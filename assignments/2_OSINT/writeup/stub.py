@@ -5,10 +5,6 @@ port = 1337 # Port here
 wordlist = "./rockyou.txt" # Point to wordlist file
 
 f = open(wordlist, "r")
-i=0
-while i<10000:
-	f.readline()
-	i=i+1
 
 def brute_force():
 
