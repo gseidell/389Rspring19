@@ -14,4 +14,4 @@ Digital acknowledgement: Glenn Seidell
 
 ### Part 2 (30 Pts)
 
-*Your reflection goes here*
+CMSC389R-{h@sh1ng_@nd_sl@sh1ng}
