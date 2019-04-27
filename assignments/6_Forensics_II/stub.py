@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+# !/usr/bin/env python2
 
 import sys
 import struct
@@ -40,3 +40,43 @@ print("VERSION: %d" % int(version))
 # the rest of the header and the actual FPFF body. Good luck!
 
 print("-------  BODY  -------")
+
+index = 8
+# print (data[index:4])
+
+time= struct.unpack("<L", data[index:index+4])
+index = index+4
+print("Time: ",time[0])
+
+author = struct.unpack("<ssssssss", data[index:index+8])
+index = index+8
+tmp = ""
+for c in author:
+    tmp += str(c)[2]
+print("Author",tmp)
+
+sections = struct.unpack("<L", data[index:index+4])[0]
+index = index+4
+
+count = 0
+f = open('./out.png', 'wb')
+while count < sections:
+    stype,length = struct.unpack("<LL", data[index:index+8])
+    index = index+8
+
+    curr = 0
+    print("TYPE",stype)
+    print("LENGTH",length)
+    tmp = ""
+    while(curr<length):
+        sectionData = struct.unpack("c", data[index+curr:index+curr+1])
+        curr=curr+1
+        if(stype == 8):
+            f.write(sectionData[0])
+        if(length<100):
+            tmp = tmp + chr(ord(sectionData[0]))
+
+    index = index+ length
+    count= count +1
+    print(tmp)
+f.close()
